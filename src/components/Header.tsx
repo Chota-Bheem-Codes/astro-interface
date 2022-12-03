@@ -24,6 +24,7 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SecurityIcon from "@mui/icons-material/Security";
+import NetworkSwitch from "./NetworkSwitch";
 
 const Wrapper = styled.div`
   z-index: 9998 !important;
@@ -265,13 +266,6 @@ function Header() {
             <SideMenuWrapper>
               <StyledCancelIcon onClick={() => setOpenMenu(false)} />
               <NavigationLinks>
-                {/* <StyledButton3
-                  onClick={() => setOpenMenu(false)}
-                  to="/nft/mynfts"
-                  active={currentRoute.pathname === "/nft/mynfts"}
-                >
-                  My NFTs
-                </StyledButton3> */}
                 <StyledButton3
                   onClick={() => setOpenMenu(false)}
                   to="/home"
@@ -293,15 +287,6 @@ function Header() {
                 >
                   NFT Prediction
                 </StyledButton3>
-                {/* <StyledButton3
-                  onClick={() => setOpenMenu(false)}
-                  to="/prediction-markets/my-positions"
-                  active={
-                    currentRoute.pathname === "/prediction-markets/my-positions"
-                  }
-                >
-                  My Positions
-                </StyledButton3> */}
               </NavigationLinks>
             </SideMenuWrapper>
           </StyledDrawer>
@@ -315,123 +300,12 @@ function Header() {
               >
                 Prediction Markets
               </StyledButton2>
-              {/* <StyledButton2
-                to="/nft"
-                active={currentRoute.pathname === "/nft"}
-              >
-                NFT Prediction Market
-              </StyledButton2> */}
             </StyledStack2>
-            {/* <StyledStack2 direction="row" spacing={2}>
-              <StyledButton2
-                to="/nft"
-                active={currentRoute.pathname === "/nft"}
-              >
-                NFT Prediction Market
-              </StyledButton2>
-              <StyledButton2
-                to="/prediction-markets/cricket"
-                active={currentRoute.pathname.includes("/prediction-markets")}
-              >
-                Prediction Markets
-              </StyledButton2>
-            </StyledStack2> */}
             <StyledStack direction="row" spacing={1}>
-              {/* <StyledButton
-                onClick={() => history?.push("/nft/mynfts")}
-                variant="outlined"
-              >
-                My NFTs
-              </StyledButton>
-              <StyledButton
-                onClick={() =>
-                  history?.push("/prediction-markets/my-positions")
-                }
-                variant="outlined"
-              >
-                My Positions
-              </StyledButton> */}
-              <Icons>
-                <StyledListItemIcon
-                  onClick={() =>
-                    window.open("https://twitter.com/yoda_xyz", "_blank")
-                  }
-                >
-                  <TwitterIcon />
-                </StyledListItemIcon>
-                <StyledListItemIcon
-                  onClick={() => window.open("https://t.me/YODAxyz", "_blank")}
-                >
-                  <TelegramIcon />
-                </StyledListItemIcon>
-              </Icons>
+             
+              <NetworkSwitch/>
               <Wallet />
-              {/* <Menu>
-                <StyledMenuButton
-                  value="check"
-                  onClick={() => setInfoDropdown((x) => !x)}
-                >
-                  <MoreHorizIcon />
-                </StyledMenuButton>
-                {infoDropdown && (
-                  <StyledDropdown>
-                    <List
-                      subheader={
-                        <StyledListSubheader>
-                          Connects & More..
-                        </StyledListSubheader>
-                      }
-                    >
-                      <StyledListItemButton
-                        onClick={() =>
-                          window.open("https://t.me/YODAxyz", "_blank")
-                        }
-                      >
-                        <StyledListItemIcon>
-                          <TelegramIcon />
-                        </StyledListItemIcon>
-                        <StyledListItemText primary="Telegram" />
-                      </StyledListItemButton>
-                      <StyledListItemButton
-                        onClick={() =>
-                          window.open("https://twitter.com/yoda_xyz", "_blank")
-                        }
-                      >
-                        <StyledListItemIcon>
-                          <TwitterIcon />
-                        </StyledListItemIcon>
-                        <StyledListItemText primary="Twitter" />
-                      </StyledListItemButton>
-                      <StyledListItemButton
-                        onClick={() =>
-                          window.open(
-                            "https://yoda-xyz.gitbook.io/wiki/",
-                            "_blank"
-                          )
-                        }
-                      >
-                        <StyledListItemIcon>
-                          <MenuBookIcon />
-                        </StyledListItemIcon>
-                        <StyledListItemText primary="Docs" />
-                      </StyledListItemButton>
-                      <StyledListItemButton
-                        onClick={() =>
-                          window.open(
-                            "https://yoda-xyz.gitbook.io/wiki/yoda/security",
-                            "_blank"
-                          )
-                        }
-                      >
-                        <StyledListItemIcon>
-                          <SecurityIcon />
-                        </StyledListItemIcon>
-                        <StyledListItemText primary="Audit" />
-                      </StyledListItemButton>
-                    </List>
-                  </StyledDropdown>
-                )}
-              </Menu> */}
+             
             </StyledStack>
           </Toolbar>
         </StyledNavbar>
