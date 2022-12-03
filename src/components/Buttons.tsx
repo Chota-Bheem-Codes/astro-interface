@@ -198,7 +198,7 @@ function Buttons() {
         <>
           <ButtonDiv>
             <OutLinedButton
-              onClick={() => history?.push("/prediction-markets/general")}
+              onClick={() => history?.push("/prediction-markets/football")}
               variant="outlined"
             >
               <ArrowBackIcon sx={{ marginRight: "4px" }} fontSize="small" />
@@ -221,7 +221,7 @@ function Buttons() {
           </ButtonDiv>
           <MobileButtonDiv>
             <OutLinedButtonMobile
-              onClick={() => history?.push("/prediction-markets/general")}
+              onClick={() => history?.push("/prediction-markets/football")}
               variant="outlined"
             >
               <ArrowBackIcon sx={{ marginRight: "4px" }} fontSize="small" />
@@ -345,8 +345,8 @@ function Buttons() {
                   <MenuItemDiv
                     value={40}
                     onClick={() => {
-                      history?.push("/prediction-markets/general");
-                      setCurrentPage("General");
+                      history?.push("/prediction-markets/football");
+                      setCurrentPage("Football");
                     }}
                   >
                     General
