@@ -98,23 +98,23 @@ function App() {
 
   const fetchInitialData = async () => {
     const data = await Promise.all([
-      getQuestionData("cricket"),
+      //getQuestionData("cricket"),
       getTheContractAddresses(),
       getQuestionMappingData(),
       getQuestionDataGraph(),
-      getQuestionData("general"),
+      //getQuestionData("general"),
       getQuestionData("crypto"),
       getTeamLogos(),
       getQuestionData("football"),
     ]);
-    setMatchData(data[0] && sortMatchData(data[0]));
-    setQuestionAddresses(data[1]);
-    setQuestionMappping(data[2]);
-    setQuestionBetDataMapping(groupByIdQuestion(data[3]));
-    setGeneralData(data[4] && sortMatchData(data[4]));
-    setCryptoData(data[5] && sortMatchData(data[5]));
-    setTeamLogos(data[6]);
-    setFootballData(data[7] && sortMatchData(data[7]));
+    //setMatchData(data[0] && sortMatchData(data[0]));
+    setQuestionAddresses(data[0]);
+    setQuestionMappping(data[1]);
+    setQuestionBetDataMapping(groupByIdQuestion(data[2]));
+    //setGeneralData(data[3] && sortMatchData(data[3]));
+    setCryptoData(data[3] && sortMatchData(data[3]));
+    setTeamLogos(data[4]);
+    setFootballData(data[5] && sortMatchData(data[5]));
   };
 
   const fetchUserSpecificData = async () => {
@@ -189,7 +189,7 @@ function App() {
               exact
               strict
               path="/prediction-markets"
-              render={() => <Redirect to="/prediction-markets/cricket" />}
+              render={() => <Redirect to="/prediction-markets/football" />}
             />
             <Route
               strict
