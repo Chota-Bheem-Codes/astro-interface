@@ -152,7 +152,7 @@ const ConfirmationCard = ({ message, close, tweetUrl }: Props) => {
 
       <Heading>Transaction Successful</Heading>
 
-      {tweetUrl && (
+      {/* {tweetUrl && (
         <TwitterLink
           onClick={() =>
             window.open(
@@ -165,7 +165,7 @@ const ConfirmationCard = ({ message, close, tweetUrl }: Props) => {
           Share on &nbsp;
           <TwitterIcon />
         </TwitterLink>
-      )}
+      )} */}
       <SwapState>
         {message ? (
           message
@@ -180,7 +180,7 @@ const ConfirmationCard = ({ message, close, tweetUrl }: Props) => {
           </Explorer>
         )}
       </SwapState>
-      <Explorer onClick={openTransaction}>View on explorer</Explorer>
+      {/* <Explorer onClick={openTransaction}>View on explorer</Explorer> */}
 
       {/* <CloseButton onClick={close}>Close</CloseButton> */}
     </Wrapper>

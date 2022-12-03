@@ -20,40 +20,47 @@ export const getApproval = async ({
   userAddress,
   spenderAddress,
   rpcProvider,
+  gameTokenAddress,
+  gameTokenDecimal,
 }) => {
   try {
     const erc20Instance = new ethers.Contract(
-      gameToken.address,
+      gameTokenAddress,
       gameTokenContract.abi,
       rpcProvider
     );
     const result = await erc20Instance.allowance(userAddress, spenderAddress);
-    return formatDecimals(result.toString(), gameToken.decimals);
+    return formatDecimals(result.toString(), gameTokenDecimal);
   } catch (error) {
     console.log("Error", error);
   }
 };
 
-export const getGameTokenBalance = async ({ accountAddress, rpcProvider }) => {
+export const getGameTokenBalance = async ({
+  accountAddress,
+  rpcProvider,
+  gameTokenAddress,
+  gameTokenDecimal,
+}) => {
   try {
     const erc20Instance = new ethers.Contract(
-      gameToken.address,
+      gameTokenAddress,
       gameTokenContract.abi,
       rpcProvider
     );
     const result = await erc20Instance.balanceOf(accountAddress);
-    return ethers.utils.formatUnits(result.toString(), gameToken.decimals);
+    return ethers.utils.formatUnits(result.toString(), gameTokenDecimal);
   } catch (error) {
     console.log("Error ", error);
   }
 };
 
-export const setApproval = async ({ spender }) => {
+export const setApproval = async ({ spender, gameTokenAddress }) => {
   try {
     let ans = false;
     const signer = window.web3Provider.getSigner();
     const erc20Instance = new ethers.Contract(
-      gameToken.address,
+      gameTokenAddress,
       gameTokenContract.abi,
       signer
     );
@@ -144,14 +151,18 @@ const metaTransactionType = [
   { name: "functionSignature", type: "bytes" },
 ];
 
-export const biconomyApprove = async ({ accountAddress, spender }) => {
+export const biconomyApprove = async ({
+  accountAddress,
+  spender,
+  gameTokenAddress,
+}) => {
   let ans = false;
   try {
     console.log("Sending meta transaction");
     let userAddress = accountAddress;
     const contract = new window.biconomyWeb3USDC.eth.Contract(
       gameTokenContract.abi,
-      gameToken.address
+      gameTokenAddress
     );
     let nonce = await contract.methods.nonces(userAddress).call();
     console.log(nonce);
@@ -163,7 +174,7 @@ export const biconomyApprove = async ({ accountAddress, spender }) => {
     let domainData = {
       name,
       version: "1",
-      verifyingContract: gameToken.address,
+      verifyingContract: gameTokenAddress,
       salt: "0x" + parseInt(network.networkId).toString(16).padStart(64, "0"),
     };
     let message = {};
@@ -457,13 +468,19 @@ const sendSignedTransaction = async (
   }
 };
 
-export const userSetApproval = ({ accountAddress, spender, gasLess }) => {
+export const userSetApproval = ({
+  accountAddress,
+  spender,
+  gasLess,
+  gameTokenAddress,
+}) => {
   const ans = gasLess
     ? biconomyApprove({
         accountAddress: accountAddress,
         spender: spender,
+        gameTokenAddress,
       })
-    : setApproval({ spender: spender });
+    : setApproval({ spender: spender, gameTokenAddress });
 
   return ans;
 };

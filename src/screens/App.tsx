@@ -121,7 +121,7 @@ function App() {
   const fetchUserSpecificData = async () => {
     const res = await Promise.all([
       getMyBetDataGraph(currentNetwork.graphEndpoint, accountAddress ?? ""),
-      getGameTokenBalance({ accountAddress: accountAddress, rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc)}),
+      getGameTokenBalance({ accountAddress: accountAddress, rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc), gameTokenAddress: currentNetwork.gameToken.address, gameTokenDecimal: currentNetwork.gameToken.decimals}),
     ]);
     setMyBetsData(
       questionMapping && res[0] && sortMyPositions(res[0], questionMapping)
