@@ -3,51 +3,66 @@ const { ethereum } = window;
 const isMainnet = process.env.REACT_APP_MAINNET
 
 
-let params:any
+let params: any;
+
+const ethIndiaChains = [
+  {
+    chainId: "338",
+    chainName: "Cronos Testnet",
+    rpcUrls: ["https://evm-t3.cronos.org"],
+    iconUrls: ["https://cryptologos.cc/logos/cronos-cro-logo.png?v=023"],
+    blockExplorerUrls: ["https://testnet.cronoscan.com"],
+    nativeCurrency: {
+      name: "Test CRO",
+      symbol: "TCRO",
+      decimals: 18,
+    },
+  },
+  {
+    chainId: "0x13881",
+    chainName: "Matic Mumbai Testnet",
+    rpcUrls: ["https://rpc-mumbai.matic.today"],
+    iconUrls: ["https://cryptologos.cc/logos/polygon-matic-logo.png?v=010"],
+    blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com/"],
+    nativeCurrency: {
+      name: "Matic Token",
+      symbol: "MATIC",
+      decimals: 18,
+    },
+  },
+];
 
 const paramsTestnet = [
-    {
-        "chainId": "0x13881",
-        "chainName": "Matic Mumbai Testnet",
-        "rpcUrls": [
-            "https://rpc-mumbai.matic.today"
-        ],
-        "iconUrls": [
-            "https://cryptologos.cc/logos/polygon-matic-logo.png?v=010"
-          ],
-        "blockExplorerUrls": [
-            "https://explorer-mumbai.maticvigil.com/"
-        ],
-        "nativeCurrency": {
-            "name": "Matic Token",
-            "symbol": "MATIC",
-            "decimals": 18
-        },
-    }
-]
+  {
+    chainId: "0x13881",
+    chainName: "Matic Mumbai Testnet",
+    rpcUrls: ["https://rpc-mumbai.matic.today"],
+    iconUrls: ["https://cryptologos.cc/logos/polygon-matic-logo.png?v=010"],
+    blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com/"],
+    nativeCurrency: {
+      name: "Matic Token",
+      symbol: "MATIC",
+      decimals: 18,
+    },
+  },
+];
 
 const paramsMainnet = [
-    {
-        "chainId": "0x89",
-        "chainName": "Matic Network",
-        "rpcUrls": [
-            'https://polygon-rpc.com',
-        ],
-        "iconUrls": [
-            "https://cryptologos.cc/logos/polygon-matic-logo.png?v=010"
-          ],
-        "blockExplorerUrls": [
-            "https://polygonscan.com/"
-        ],
-        "nativeCurrency": {
-            "name": "Matic Token",
-            "symbol": "MATIC",
-            "decimals": 18
-        },
-    }
-]
+  {
+    chainId: "0x89",
+    chainName: "Matic Network",
+    rpcUrls: ["https://polygon-rpc.com"],
+    iconUrls: ["https://cryptologos.cc/logos/polygon-matic-logo.png?v=010"],
+    blockExplorerUrls: ["https://polygonscan.com/"],
+    nativeCurrency: {
+      name: "Matic Token",
+      symbol: "MATIC",
+      decimals: 18,
+    },
+  },
+];
 
-params = paramsMainnet
+params = ethIndiaChains;
 
 export const switchNetworkInMetamask = async (id: number) => {
     if (ethereum) {
