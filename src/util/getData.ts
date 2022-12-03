@@ -102,7 +102,7 @@ export const getQuestionData = async (code: string, BASE_URL: string) => {
       url = CRYPTO_DATA;
     }
 
-    const res = await fetch(questionUrl[code]);
+    const res = await fetch(url);
     const data: MatchData[] = await res.json();
     return data;
   } catch (e) {

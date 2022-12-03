@@ -139,7 +139,7 @@ export const NETWORK_LIST_TESTNET = [
     explorer: "https://explorer-liberty10.shardeum.org/tx/",
     logo: "https://img.api.cryptorank.io/coins/150x150.shardeum1665056595732.png",
     baseUrl:
-      "https://raw.githubusercontent.com/Chota-Bheem-Codes/astro-game-data/main",
+      "https://raw.githubusercontent.com/Chota-Bheem-Codes/astro-game-data/shardeum",
     graphEndpoint:
       "https://graph.cronoslabs.com/subgraphs/name/astro-prediction-markets/astro",
     gameToken: {
