@@ -7,6 +7,18 @@ let params: any;
  
 const ethIndiaChains = [
   {
+    chainId: "0x13881",
+    chainName: "Matic Mumbai Testnet",
+    rpcUrls: ["https://rpc-mumbai.matic.today"],
+    iconUrls: ["https://cryptologos.cc/logos/polygon-matic-logo.png?v=010"],
+    blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com/"],
+    nativeCurrency: {
+      name: "Matic Token",
+      symbol: "MATIC",
+      decimals: 18,
+    },
+  },
+  {
     chainId: "0x" + (338).toString(16),
     chainName: "Cronos Testnet",
     rpcUrls: ["https://evm-t3.cronos.org"],

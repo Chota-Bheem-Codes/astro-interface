@@ -9,7 +9,7 @@ import { MEDIA_WIDTHS } from "../../theme";
 import { useMediaQuery } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useLocation } from "react-router";
-import { useWalletConnected } from "../../state/wallet/hooks";
+import { useChainId, useWalletConnected } from "../../state/wallet/hooks";
 import { networkList } from "../../config/Constants";
 import { NetworkType } from "../../state/network/slice";
 
@@ -190,6 +190,7 @@ const NetworkSwitch: React.FunctionComponent = () => {
   const [currentNetwork, setCurrentNetwork] = useNetworkManager();
   const upToSmall = useMediaQuery(`(max-width: ${MEDIA_WIDTHS.upToSmall}px)`);
   const [openNetworkMenu, setOpenNetworkMenu] = useState(false);
+  const [chainId] = useChainId()
   const location = useLocation();
   const isWidget = useMemo(
     () => new URLSearchParams(location.search).get("isWidget"),
@@ -256,7 +257,7 @@ const NetworkSwitch: React.FunctionComponent = () => {
               >
                 <NetworkName>
                   <OnlineSign
-                    show={currentNetwork.networkId === chain.networkId}
+                    show={chainId === chain.networkId}
                   ></OnlineSign>
                   {chain.name?.split(" ")[0]}
                 </NetworkName>

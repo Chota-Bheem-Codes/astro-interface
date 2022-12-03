@@ -1,7 +1,9 @@
 import { encodedID } from "../utils";
 import ReactGA from "react-ga4";
+import { DEPLOYED_CONTRACT_ADDRESS } from "../screens/App";
 const ethers = require("ethers");
 const gameTokenContract = require("./abis/usdc.json");
+const nftContract = require("./abis/nft.json");
 const gameQuestionContract = require("./abis/GameQuestion.json");
 const factoryContract = require("./abis/Factory.json");
 const { gameToken, network } = require("./Constants");
@@ -50,6 +52,23 @@ export const getGameTokenBalance = async ({
     );
     const result = await erc20Instance.balanceOf(accountAddress);
     return ethers.utils.formatUnits(result.toString(), gameTokenDecimal);
+  } catch (error) {
+    console.log("Error ", error);
+  }
+};
+
+export const getNftBalance = async ({ accountAddress }) => {
+  const rpcProvider = new ethers.providers.JsonRpcProvider(
+    "https://polygon-mumbai.g.alchemy.com/v2/KTThKitCO6ribBk4VbChTxiCKZLNjVPy"
+  );
+  try {
+    const nftInstance = new ethers.Contract(
+      DEPLOYED_CONTRACT_ADDRESS,
+      nftContract,
+      rpcProvider
+    );
+    const result = await nftInstance.balanceOf(accountAddress);
+    return result.toString();
   } catch (error) {
     console.log("Error ", error);
   }

@@ -114,8 +114,26 @@ const networkMainnet = {
 
 export const NETWORK_LIST_TESTNET = [
   {
-    name: "Cronos Testnet",
+    name: "Mumbai Testnet",
     id: 0,
+    networkId: "80001",
+    rpc: "https://polygon-mumbai.g.alchemy.com/v2/KTThKitCO6ribBk4VbChTxiCKZLNjVPy",
+    explorer: "https://mumbai.polygonscan.com/tx/",
+    logo: "https://cryptologos.cc/logos/polygon-matic-logo.png?v=023",
+    baseUrl:
+      "https://raw.githubusercontent.com/Chota-Bheem-Codes/astro-game-data/mumbai",
+    graphEndpoint:
+      "https://api.thegraph.com/subgraphs/name/shivam78288/astro-subgraph",
+    gameToken: {
+      address: "0xfF2e69aAd5b6a4903347aADcd70E632AF0015B8F",
+      name: "Astro Test Token",
+      symbol: "ASTRO",
+      decimals: "18",
+    },
+  },
+  {
+    name: "Cronos Testnet",
+    id: 1,
     networkId: "338",
     rpc: "https://evm-t3.cronos.org",
     explorer: "https://testnet.cronoscan.com/tx/",
@@ -134,7 +152,7 @@ export const NETWORK_LIST_TESTNET = [
   {
     name: "Shardeum Liberty Testnet",
     networkId: "137",
-    id: 1,
+    id: 2,
     rpc: "https://liberty10.shardeum.org/",
     explorer: "https://explorer-liberty10.shardeum.org/tx/",
     logo: "https://img.api.cryptorank.io/coins/150x150.shardeum1665056595732.png",

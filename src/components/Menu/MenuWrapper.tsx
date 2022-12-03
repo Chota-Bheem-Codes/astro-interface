@@ -19,6 +19,7 @@ const MenuWrapper = styled(Dialog)`
     &:focus{
     outline: none;
 	}
+	backdrop-filter: blur(20px);
 }
 `;
 
