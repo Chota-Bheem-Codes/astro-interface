@@ -207,27 +207,27 @@ function App() {
     fetchUserSpecificData();
   }, [accountAddress, questionMapping, isWalletConnected]);
 
-  useEffect(() => {
-    if (!accountAddress) return;
-    const fetchNFTBalance = async() => {
-      console.log("FETCH NFT BALANCE ->")
-      const balance = await getNftBalance({ accountAddress:"0x2B351b7bbC86ab5DF433539fE907f8EE4DE1B964" });
-      console.log("nft balance ->", balance)
-      if (parseInt(balance) > 0) {
-        setIsOver18(true)
-      }
-    }
-    fetchNFTBalance()
-    const fetchInterval = setInterval(() => fetchNFTBalance(), 15000)
-    return () => clearInterval(fetchInterval)
-  }, [accountAddress]);
+  // useEffect(() => {
+  //   if (!accountAddress) return;
+  //   const fetchNFTBalance = async() => {
+  //     console.log("FETCH NFT BALANCE ->")
+  //     const balance = await getNftBalance({ accountAddress:"0x2B351b7bbC86ab5DF433539fE907f8EE4DE1B964" });
+  //     console.log("nft balance ->", balance)
+  //     if (parseInt(balance) > 0) {
+  //       setIsOver18(true)
+  //     }
+  //   }
+  //   fetchNFTBalance()
+  //   const fetchInterval = setInterval(() => fetchNFTBalance(), 15000)
+  //   return () => clearInterval(fetchInterval)
+  // }, [accountAddress]);
 
   return (
     <Router>
       <Route />
       <Wrapper>
         <Header />
-        {
+        {/* {
           !isOver18 &&
           <>
             <MenuWrapper open={true}>
@@ -243,7 +243,7 @@ function App() {
               </QRWrapper>
             </MenuWrapper>
           </>
-        }
+        } */}
         {showMetaNotification ? (
           isMobile ? (
             !isMetaMask ? (
