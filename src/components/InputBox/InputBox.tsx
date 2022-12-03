@@ -363,7 +363,7 @@ function InputBox({ input, question, setInput, action, option, close }: Props) {
       <VisitDfyn>
         Need USDC? Visit{" "}
         <a
-          href="https://exchange.dfyn.network/"
+          href="https://exchange.astro.network/"
           target="_blank"
           rel="noopener noreferrer"
           style={{ fontWeight: "bold", color: "#4390F8" }}
