@@ -17,15 +17,16 @@ import ScreenFourPointOneMob from "./HomePage/ScreenFourPointOneMob";
 import ScreenFourPointTwoMob from "./HomePage/ScreenFourPointTwoMob";
 import ScreenFourPointFourMob from "./HomePage/ScreenFourPointFourMob";
 import ScreenFourPointThreeMob from "./HomePage/ScreenFourPointThreeMob";
+import { useNetworkManager } from "../state/network/hooks";
 const Wrapper = styled.div`
   position: relative;
 `;
 
 function Homepage() {
   const [topThree, setTopThree] = useState<QuestionDataWithAmount[]>([]);
-  const [state, setState] = useState(0);
+  const [currentNetwork] = useNetworkManager()
   useEffect(() => {
-    getQuestionWithHightestTVL().then((result) => {
+    getQuestionWithHightestTVL(currentNetwork.graphEndpoint, currentNetwork.baseUrl).then((result) => {
       if (result) setTopThree(result);
     });
   }, []);
