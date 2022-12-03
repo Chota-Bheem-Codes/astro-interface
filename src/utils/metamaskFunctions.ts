@@ -4,10 +4,10 @@ const isMainnet = process.env.REACT_APP_MAINNET
 
 
 let params: any;
-
+ 
 const ethIndiaChains = [
   {
-    chainId: "338",
+    chainId: "0x" + (338).toString(16),
     chainName: "Cronos Testnet",
     rpcUrls: ["https://evm-t3.cronos.org"],
     iconUrls: ["https://cryptologos.cc/logos/cronos-cro-logo.png?v=023"],
@@ -19,14 +19,16 @@ const ethIndiaChains = [
     },
   },
   {
-    chainId: "0x13881",
-    chainName: "Matic Mumbai Testnet",
-    rpcUrls: ["https://rpc-mumbai.matic.today"],
-    iconUrls: ["https://cryptologos.cc/logos/polygon-matic-logo.png?v=010"],
-    blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com/"],
+    chainId: "0x" + (8080).toString(16),
+    chainName: "Shardeum Liberty Testnet",
+    rpcUrls: ["https://liberty10.shardeum.org/"],
+    iconUrls: [
+      "https://img.api.cryptorank.io/coins/150x150.shardeum1665056595732.png",
+    ],
+    blockExplorerUrls: ["https://explorer-liberty10.shardeum.org/"],
     nativeCurrency: {
-      name: "Matic Token",
-      symbol: "MATIC",
+      name: "SHM",
+      symbol: "SHM",
       decimals: 18,
     },
   },

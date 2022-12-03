@@ -59,6 +59,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { getMyBetDataGraph } from "../../util/getData";
 import { useHistory } from "react-router";
 import Moment from "react-moment";
+import { ethers } from "ethers";
+import { useNetworkManager } from "../../state/network/hooks";
 
 const Wrapper = styled.div``;
 const Team1 = styled.img`
@@ -465,6 +467,7 @@ function QuestionCard({
   const [teamLogos] = useTeamLogos();
   const history = useHistory();
   const [gasLessToggle] = useGasLessToggle();
+  const [currentNetwork] = useNetworkManager()
 
   const handleOptionClick = async (newOption: number) => {
     if (!isWalletConnected) {
@@ -538,6 +541,7 @@ function QuestionCard({
     const approvalAmount = await getApproval({
       userAddress: accountAddress,
       spenderAddress: addresses[questionId],
+      rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc)
     });
     console.log("Approval Ammount - ", approvalAmount);
     if (!approvalAmount) {
@@ -648,7 +652,7 @@ function QuestionCard({
   };
 
   const updateUserBalance = async () => {
-    const data = await getGameTokenBalance({ accountAddress: accountAddress });
+    const data = await getGameTokenBalance({ accountAddress: accountAddress , rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc)});
     setUserBalance(data);
   };
 

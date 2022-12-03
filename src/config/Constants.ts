@@ -99,10 +99,59 @@ export const networkTestnet = {
 // };
 
 const networkMainnet = {
+  name: "M",
   networkId: "137",
-  rpc: "https://polygon-rpc.com",
-  explorer: "https://polygonscan.com/tx/",
+  rpc: "https://liberty10.shardeum.org/",
+  explorer: "https://explorer-liberty10.shardeum.org/tx/",
+  id: 0,
+  gameToken: {
+    address: "0x2eEe3947c2747Aa6206B64064eb3AB1ddf0BC35b",
+    name: "DFYN Test Token",
+    symbol: "DFYN",
+    decimals: "18",
+  },
 };
+
+export const NETWORK_LIST_TESTNET = [
+  {
+    name: "Cronos Testnet",
+    id: 0,
+    networkId: "338",
+    rpc: "https://evm-t3.cronos.org",
+    explorer: "https://testnet.cronoscan.com/tx/",
+    logo: "https://cryptologos.cc/logos/cronos-cro-logo.png?v=023",
+    baseUrl:
+      "https://raw.githubusercontent.com/Chota-Bheem-Codes/astro-game-data/main",
+    graphEndpoint:
+      "https://graph.cronoslabs.com/subgraphs/name/astro-prediction-markets/astro",
+    gameToken: {
+      address: "0xfF2e69aAd5b6a4903347aADcd70E632AF0015B8F",
+      name: "Astro Test Token",
+      symbol: "ASTRO",
+      decimals: "18",
+    },
+  },
+  {
+    name: "Shardeum Liberty Testnet",
+    networkId: "137",
+    id: 1,
+    rpc: "https://liberty10.shardeum.org/",
+    explorer: "https://explorer-liberty10.shardeum.org/tx/",
+    logo: "https://img.api.cryptorank.io/coins/150x150.shardeum1665056595732.png",
+    baseUrl:
+      "https://raw.githubusercontent.com/Chota-Bheem-Codes/astro-game-data/main",
+    graphEndpoint:
+      "https://graph.cronoslabs.com/subgraphs/name/astro-prediction-markets/astro",
+    gameToken: {
+      address: "0xfF2e69aAd5b6a4903347aADcd70E632AF0015B8F",
+      name: "Astro Test Token",
+      symbol: "ASTRO",
+      decimals: "18",
+    },
+  },
+];
+
+export const networkList = NETWORK_LIST_TESTNET;
 
 export const network = networkMainnet;
 // export const network = networkTestnet;

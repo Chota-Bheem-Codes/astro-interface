@@ -14,9 +14,13 @@ export const formatDecimals = (amount, decimals = "18") => {
   return ethers.utils.formatUnits(String(amount), decimals);
 };
 
-const rpcProvider = new ethers.providers.JsonRpcProvider(network.rpc);
+//const rpcProvider = new ethers.providers.JsonRpcProvider(network.rpc);
 
-export const getApproval = async ({ userAddress, spenderAddress }) => {
+export const getApproval = async ({
+  userAddress,
+  spenderAddress,
+  rpcProvider,
+}) => {
   try {
     const erc20Instance = new ethers.Contract(
       gameToken.address,
@@ -30,7 +34,7 @@ export const getApproval = async ({ userAddress, spenderAddress }) => {
   }
 };
 
-export const getGameTokenBalance = async ({ accountAddress }) => {
+export const getGameTokenBalance = async ({ accountAddress, rpcProvider }) => {
   try {
     const erc20Instance = new ethers.Contract(
       gameToken.address,

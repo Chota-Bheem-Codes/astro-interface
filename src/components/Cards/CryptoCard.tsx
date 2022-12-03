@@ -58,6 +58,8 @@ import Tick from "../../assets/ellipse.png";
 import CryptoModal from "../ExpandedModal/CryptoModal";
 import CryptoMobileExpansion from "../MobileExpandedView/CryptoMobileExpansion";
 import { useHistory } from "react-router";
+import { ethers } from "ethers";
+import { useNetworkManager } from "../../state/network/hooks";
 
 const Wrapper = styled.div`
   &&& {
@@ -484,6 +486,7 @@ function QuestionCard({
   const [teamLogos] = useTeamLogos();
   const history = useHistory();
   const [gasLessToggle] = useGasLessToggle();
+  const [currentNetwork] = useNetworkManager()
 
   const handleOptionClick = async (newOption: number) => {
     if (!isWalletConnected) {
@@ -555,9 +558,11 @@ function QuestionCard({
     setShowInputBox(false);
     setWaitingCardMessage("Proccessing Your Bid");
     setShowWaitingModal(true);
+    
     const approvalAmount = await getApproval({
       userAddress: accountAddress,
       spenderAddress: addresses[questionId],
+      rpcProvider : new ethers.providers.JsonRpcProvider(currentNetwork.rpc)
     });
     console.log("Approval Ammount - ", approvalAmount);
     if (!approvalAmount) {
@@ -668,12 +673,12 @@ function QuestionCard({
   };
 
   const updateUserBalance = async () => {
-    const data = await getGameTokenBalance({ accountAddress: accountAddress });
+    const data = await getGameTokenBalance({ accountAddress: accountAddress, rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc) });
     setUserBalance(data);
   };
 
   useEffect(() => {
-    const updateTimeStampInterval = setInterval(() => {
+    const updateTimeStampInterval:any = setInterval(() => {
       setTimeStamp(Math.round(Date.now() / 1000));
     }, 60000);
     return () => clearInterval(updateTimeStampInterval);

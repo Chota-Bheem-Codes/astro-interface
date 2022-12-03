@@ -47,8 +47,6 @@ import {
   sortMatchData,
   sortMyPositions,
 } from "../utils";
-import Nft from "./Nft";
-import MyNft from "./MyNft";
 import { UserBet } from "../state/questions/slice";
 import { getGameTokenBalance } from "../config/ContractFunctions";
 import { useMediaQuery } from "@mui/material";
@@ -56,6 +54,8 @@ import GoogleAnalyticsReporter from "../components/GoogleAnalyticsReporter";
 import IPO from "./IPO";
 import Football from "./Football";
 import HomePage from "../components/HomePage";
+import { useNetworkManager } from "../state/network/hooks";
+import { ethers } from "ethers";
 
 declare global {
   interface Window {
@@ -95,17 +95,18 @@ function App() {
   const [isWalletConnected] = useWalletConnected();
   const isMobile = useMediaQuery("(max-width:600px)");
   const [isMetaMask, setIsMetaMask] = useState(false);
+  const [currentNetwork] = useNetworkManager()
 
   const fetchInitialData = async () => {
     const data = await Promise.all([
       //getQuestionData("cricket"),
-      getTheContractAddresses(),
-      getQuestionMappingData(),
-      getQuestionDataGraph(),
+      getTheContractAddresses(currentNetwork.baseUrl),
+      getQuestionMappingData(currentNetwork.baseUrl),
+      getQuestionDataGraph(currentNetwork.graphEndpoint),
       //getQuestionData("general"),
-      getQuestionData("crypto"),
-      getTeamLogos(),
-      getQuestionData("football"),
+      getQuestionData("crypto", currentNetwork.baseUrl),
+      getTeamLogos(currentNetwork.baseUrl),
+      getQuestionData("football", currentNetwork.baseUrl),
     ]);
     //setMatchData(data[0] && sortMatchData(data[0]));
     setQuestionAddresses(data[0]);
@@ -119,8 +120,8 @@ function App() {
 
   const fetchUserSpecificData = async () => {
     const res = await Promise.all([
-      getMyBetDataGraph(accountAddress ?? ""),
-      getGameTokenBalance({ accountAddress: accountAddress }),
+      getMyBetDataGraph(currentNetwork.graphEndpoint, accountAddress ?? ""),
+      getGameTokenBalance({ accountAddress: accountAddress, rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc)}),
     ]);
     setMyBetsData(
       questionMapping && res[0] && sortMyPositions(res[0], questionMapping)
@@ -237,11 +238,9 @@ function App() {
               path="/prediction-markets/my-positions"
               component={MyBets}
             />
-            <Route exact strict path="/nft" component={Nft} />
-            <Route exact strict path="/nft/mynfts" component={MyNft} />
             <Route
               path="*"
-              render={() => <Redirect to="/prediction-markets/general" />}
+              render={() => <Redirect to="/prediction-markets/football" />}
             />
           </Switch>
         </MarginLayout>

@@ -124,9 +124,6 @@ const WalletModal = ({ action, close }: Props) => {
           </WalletWrapper>
         ))}
       </WalletsWrapper>
-      <Web3Link onClick={() =>window.open("https://medium.com/@yodadotxyz/how-to-add-funds-on-metamask-polygon-matic-network-eacb4946033a")}>
-        Don't have a web3 wallet? Here's how you can create it
-      </Web3Link>
     </Wrapper>
   );
 };
