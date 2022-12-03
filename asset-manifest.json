@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/astro-interface/static/css/main.82b929df.chunk.css",
+    "main.js": "/astro-interface/static/js/main.2bb56c07.chunk.js",
+    "runtime-main.js": "/astro-interface/static/js/runtime-main.b52523db.js",
+    "static/js/2.8a93a1a6.chunk.js": "/astro-interface/static/js/2.8a93a1a6.chunk.js",
+    "index.html": "/astro-interface/index.html",
+    "static/js/2.8a93a1a6.chunk.js.LICENSE.txt": "/astro-interface/static/js/2.8a93a1a6.chunk.js.LICENSE.txt",
+    "static/media/AFG.57d6d291.jpeg": "/astro-interface/static/media/AFG.57d6d291.jpeg",
+    "static/media/AUS.fbb7155d.jpeg": "/astro-interface/static/media/AUS.fbb7155d.jpeg",
+    "static/media/AUS_WINNER.26e89b62.png": "/astro-interface/static/media/AUS_WINNER.26e89b62.png",
+    "static/media/BAN.46fcd75e.jpeg": "/astro-interface/static/media/BAN.46fcd75e.jpeg",
+    "static/media/ENG.cec50637.jpeg": "/astro-interface/static/media/ENG.cec50637.jpeg",
+    "static/media/IND.e6ea9820.jpeg": "/astro-interface/static/media/IND.e6ea9820.jpeg",
+    "static/media/Metamask.bbddb4f4.svg": "/astro-interface/static/media/Metamask.bbddb4f4.svg",
+    "static/media/NZ.a73d7c67.jpeg": "/astro-interface/static/media/NZ.a73d7c67.jpeg",
+    "static/media/NZ_RUNNER_UP.d2b867a2.png": "/astro-interface/static/media/NZ_RUNNER_UP.d2b867a2.png",
+    "static/media/PAK.bcafaa64.jpeg": "/astro-interface/static/media/PAK.bcafaa64.jpeg",
+    "static/media/SA.1569f186.jpeg": "/astro-interface/static/media/SA.1569f186.jpeg",
+    "static/media/SL.4b9aac0e.jpeg": "/astro-interface/static/media/SL.4b9aac0e.jpeg",
+    "static/media/WI.6864acc5.jpeg": "/astro-interface/static/media/WI.6864acc5.jpeg",
+    "static/media/astro-removebg.8b65660f.png": "/astro-interface/static/media/astro-removebg.8b65660f.png",
+    "static/media/coinbase.8ef23496.svg": "/astro-interface/static/media/coinbase.8ef23496.svg",
+    "static/media/draw.78c5b29a.svg": "/astro-interface/static/media/draw.78c5b29a.svg",
+    "static/media/fortmatic.bf78280d.svg": "/astro-interface/static/media/fortmatic.bf78280d.svg",
+    "static/media/lost.8bcd8503.svg": "/astro-interface/static/media/lost.8bcd8503.svg",
+    "static/media/metamask.c901ad35.svg": "/astro-interface/static/media/metamask.c901ad35.svg",
+    "static/media/new-markets.ba8f3832.png": "/astro-interface/static/media/new-markets.ba8f3832.png",
+    "static/media/portis.1dd92809.svg": "/astro-interface/static/media/portis.1dd92809.svg",
+    "static/media/screenOneBG.92cbea85.svg": "/astro-interface/static/media/screenOneBG.92cbea85.svg",
+    "static/media/spinner-ellipse.1edcceaa.png": "/astro-interface/static/media/spinner-ellipse.1edcceaa.png",
+    "static/media/torus.8cba2e0f.svg": "/astro-interface/static/media/torus.8cba2e0f.svg",
+    "static/media/walletconnect-circle.a4166a89.svg": "/astro-interface/static/media/walletconnect-circle.a4166a89.svg",
+    "static/media/win.732fe128.svg": "/astro-interface/static/media/win.732fe128.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b52523db.js",
+    "static/js/2.8a93a1a6.chunk.js",
+    "static/css/main.82b929df.chunk.css",
+    "static/js/main.2bb56c07.chunk.js"
+  ]
+}
