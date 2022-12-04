@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/astro-interface/static/css/main.82b929df.chunk.css",
-    "main.js": "/astro-interface/static/js/main.2bb56c07.chunk.js",
+    "main.js": "/astro-interface/static/js/main.a7956144.chunk.js",
     "runtime-main.js": "/astro-interface/static/js/runtime-main.b52523db.js",
-    "static/js/2.8a93a1a6.chunk.js": "/astro-interface/static/js/2.8a93a1a6.chunk.js",
+    "static/js/2.2e2da51f.chunk.js": "/astro-interface/static/js/2.2e2da51f.chunk.js",
     "index.html": "/astro-interface/index.html",
-    "static/js/2.8a93a1a6.chunk.js.LICENSE.txt": "/astro-interface/static/js/2.8a93a1a6.chunk.js.LICENSE.txt",
+    "static/js/2.2e2da51f.chunk.js.LICENSE.txt": "/astro-interface/static/js/2.2e2da51f.chunk.js.LICENSE.txt",
     "static/media/AFG.57d6d291.jpeg": "/astro-interface/static/media/AFG.57d6d291.jpeg",
     "static/media/AUS.fbb7155d.jpeg": "/astro-interface/static/media/AUS.fbb7155d.jpeg",
     "static/media/AUS_WINNER.26e89b62.png": "/astro-interface/static/media/AUS_WINNER.26e89b62.png",
@@ -35,8 +35,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.b52523db.js",
-    "static/js/2.8a93a1a6.chunk.js",
+    "static/js/2.2e2da51f.chunk.js",
     "static/css/main.82b929df.chunk.css",
-    "static/js/main.2bb56c07.chunk.js"
+    "static/js/main.a7956144.chunk.js"
   ]
 }
