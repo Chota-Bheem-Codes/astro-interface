@@ -198,7 +198,7 @@ function Buttons() {
         <>
           <ButtonDiv>
             <OutLinedButton
-              onClick={() => history?.push("/prediction-markets/general")}
+              onClick={() => history?.push("/prediction-markets/football")}
               variant="outlined"
             >
               <ArrowBackIcon sx={{ marginRight: "4px" }} fontSize="small" />
@@ -207,7 +207,7 @@ function Buttons() {
 
             <RightButtonsDiv>
               <StyledStack direction="row" spacing={3}>
-                <OutLinedButton
+                {/* <OutLinedButton
                   variant="outlined"
                   startIcon={<LocalGasStationIcon />}
                   onClick={() => setGasMode(!gasMode)}
@@ -215,13 +215,13 @@ function Buttons() {
                 >
                   Gasless Mode:&nbsp;
                   <span className="type">{gasMode ? "ON" : "OFF"}</span>
-                </OutLinedButton>
+                </OutLinedButton> */}
               </StyledStack>
             </RightButtonsDiv>
           </ButtonDiv>
           <MobileButtonDiv>
             <OutLinedButtonMobile
-              onClick={() => history?.push("/prediction-markets/general")}
+              onClick={() => history?.push("/prediction-markets/football")}
               variant="outlined"
             >
               <ArrowBackIcon sx={{ marginRight: "4px" }} fontSize="small" />
@@ -242,7 +242,7 @@ function Buttons() {
           <ButtonDiv>
             <BackgroundDiv>
               <StyledStack direction="row" spacing={1}>
-                <StyledButton
+                {/* <StyledButton
                   onClick={() => history?.push("/prediction-markets/cricket")}
                   active={currentRoute.pathname.includes(
                     "/prediction-markets/cricket"
@@ -251,7 +251,7 @@ function Buttons() {
                 >
                   {" "}
                   Cricket
-                </StyledButton>
+                </StyledButton> */}
                 <StyledButton
                   onClick={() => history?.push("/prediction-markets/football")}
                   active={currentRoute.pathname.includes(
@@ -272,7 +272,7 @@ function Buttons() {
                   {" "}
                   Crypto
                 </StyledButton>
-                <StyledButton
+                {/* <StyledButton
                   onClick={() => history?.push("/prediction-markets/general")}
                   active={currentRoute.pathname.includes(
                     "/prediction-markets/general"
@@ -281,12 +281,12 @@ function Buttons() {
                 >
                   {" "}
                   General
-                </StyledButton>
+                </StyledButton> */}
               </StyledStack>
             </BackgroundDiv>
             <RightButtonsDiv>
               <StyledStack direction="row" spacing={3}>
-                <OutLinedButton
+                {/* <OutLinedButton
                   variant="outlined"
                   startIcon={<LocalGasStationIcon />}
                   onClick={() => setGasMode(!gasMode)}
@@ -294,7 +294,7 @@ function Buttons() {
                 >
                   Gasless Mode:&nbsp;
                   <span className="type">{gasMode ? "ON" : "OFF"}</span>
-                </OutLinedButton>
+                </OutLinedButton> */}
 
                 <OutLinedButton
                   onClick={() =>
@@ -345,8 +345,8 @@ function Buttons() {
                   <MenuItemDiv
                     value={40}
                     onClick={() => {
-                      history?.push("/prediction-markets/general");
-                      setCurrentPage("General");
+                      history?.push("/prediction-markets/football");
+                      setCurrentPage("Football");
                     }}
                   >
                     General

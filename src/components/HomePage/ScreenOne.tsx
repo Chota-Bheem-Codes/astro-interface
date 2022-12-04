@@ -358,7 +358,7 @@ function ScreenOne({ top }: { top: QuestionData }) {
             <br /> outcome of an event and win rewards.
           </TextB1>
           <ButtonB1
-            onClick={() => history?.push("/prediction-markets/cricket")}
+            onClick={() => history?.push("/prediction-markets/football")}
           >
             View All Markets
           </ButtonB1>

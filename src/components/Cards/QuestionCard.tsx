@@ -59,6 +59,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { getMyBetDataGraph } from "../../util/getData";
 import { useHistory } from "react-router";
 import Moment from "react-moment";
+import { ethers } from "ethers";
+import { useNetworkManager } from "../../state/network/hooks";
 
 const Wrapper = styled.div``;
 const Team1 = styled.img`
@@ -465,6 +467,7 @@ function QuestionCard({
   const [teamLogos] = useTeamLogos();
   const history = useHistory();
   const [gasLessToggle] = useGasLessToggle();
+  const [currentNetwork] = useNetworkManager()
 
   const handleOptionClick = async (newOption: number) => {
     if (!isWalletConnected) {
@@ -485,8 +488,8 @@ function QuestionCard({
       toast.error("Bid Has Ended");
       return;
     }
-    if (network.networkId !== chainId) {
-      await switchNetworkInMetamask(0);
+     if (currentNetwork.networkId !== chainId) {
+      await switchNetworkInMetamask(currentNetwork.id);
       return;
     }
     setShowModal(false);
@@ -518,8 +521,8 @@ function QuestionCard({
       toast.error("Bid Has Ended");
       return;
     }
-    if (network.networkId !== chainId) {
-      await switchNetworkInMetamask(0);
+    if (currentNetwork.networkId !== chainId) {
+      await switchNetworkInMetamask(currentNetwork.id);
       return;
     }
     if (userBalance && parseFloat(betInput) > parseFloat(userBalance)) {
@@ -538,6 +541,8 @@ function QuestionCard({
     const approvalAmount = await getApproval({
       userAddress: accountAddress,
       spenderAddress: addresses[questionId],
+      rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc),
+       gameTokenAddress: currentNetwork.gameToken.address, gameTokenDecimal: currentNetwork.gameToken.decimals
     });
     console.log("Approval Ammount - ", approvalAmount);
     if (!approvalAmount) {
@@ -552,6 +557,7 @@ function QuestionCard({
         accountAddress: accountAddress,
         spender: addresses[questionId],
         gasLess: gasLessToggle,
+        gameTokenAddress: currentNetwork.gameToken.address
       });
       console.log("approvalTx inside comp -", approvalTx);
       if (approvalTx) {
@@ -580,8 +586,8 @@ function QuestionCard({
     }
     setShowWaitingModal(false);
     if (betTx) {
-      console.log(network.explorer + betTx);
-      setExplorerLink(network.explorer + betTx);
+      console.log(currentNetwork.explorer + betTx);
+      setExplorerLink(currentNetwork.explorer + betTx);
       console.log("betTx inside comp -", betTx);
       setShowConfirmationModal(true);
       updateUserBidData();
@@ -648,7 +654,7 @@ function QuestionCard({
   };
 
   const updateUserBalance = async () => {
-    const data = await getGameTokenBalance({ accountAddress: accountAddress });
+    const data = await getGameTokenBalance({ accountAddress: accountAddress , rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc), gameTokenAddress: currentNetwork.gameToken.address, gameTokenDecimal: currentNetwork.gameToken.decimals});
     setUserBalance(data);
   };
 

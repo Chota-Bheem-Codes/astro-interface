@@ -58,6 +58,8 @@ import Tick from "../../assets/ellipse.png";
 import CryptoModal from "../ExpandedModal/CryptoModal";
 import CryptoMobileExpansion from "../MobileExpandedView/CryptoMobileExpansion";
 import { useHistory } from "react-router";
+import { ethers } from "ethers";
+import { useNetworkManager } from "../../state/network/hooks";
 
 const Wrapper = styled.div`
   &&& {
@@ -484,6 +486,7 @@ function QuestionCard({
   const [teamLogos] = useTeamLogos();
   const history = useHistory();
   const [gasLessToggle] = useGasLessToggle();
+  const [currentNetwork] = useNetworkManager()
 
   const handleOptionClick = async (newOption: number) => {
     if (!isWalletConnected) {
@@ -494,7 +497,7 @@ function QuestionCard({
     if (
       epochConverter(new Date().toUTCString()) <
       getEpoch(question.bid_start_time)
-    ) {
+      ) {
       toast.error("Bid Has Not Started");
       return;
     }
@@ -504,8 +507,8 @@ function QuestionCard({
       toast.error("Bid Has Ended");
       return;
     }
-    if (network.networkId !== chainId) {
-      await switchNetworkInMetamask(0);
+    if (currentNetwork.networkId !== chainId) {
+      await switchNetworkInMetamask(currentNetwork.id);
       return;
     }
     setShowModal(false);
@@ -537,8 +540,8 @@ function QuestionCard({
       toast.error("Bid Has Ended");
       return;
     }
-    if (network.networkId !== chainId) {
-      await switchNetworkInMetamask(0);
+   if (currentNetwork.networkId !== chainId) {
+      await switchNetworkInMetamask(currentNetwork.id);
       return;
     }
     console.log("BET__INPut", betInput);
@@ -555,9 +558,12 @@ function QuestionCard({
     setShowInputBox(false);
     setWaitingCardMessage("Proccessing Your Bid");
     setShowWaitingModal(true);
+    
     const approvalAmount = await getApproval({
       userAddress: accountAddress,
       spenderAddress: addresses[questionId],
+      rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc),
+      gameTokenAddress: currentNetwork.gameToken.address, gameTokenDecimal: currentNetwork.gameToken.decimals
     });
     console.log("Approval Ammount - ", approvalAmount);
     if (!approvalAmount) {
@@ -572,6 +578,7 @@ function QuestionCard({
         accountAddress: accountAddress,
         spender: addresses[questionId],
         gasLess: gasLessToggle,
+         gameTokenAddress: currentNetwork.gameToken.address
       });
       console.log("approvalTx inside comp -", approvalTx);
       if (approvalTx) {
@@ -600,8 +607,8 @@ function QuestionCard({
     }
     setShowWaitingModal(false);
     if (betTx) {
-      console.log(network.explorer + betTx);
-      setExplorerLink(network.explorer + betTx);
+      console.log(currentNetwork.explorer + betTx);
+      setExplorerLink(currentNetwork.explorer + betTx);
       console.log("betTx inside comp -", betTx);
       setShowConfirmationModal(true);
       updateUserBidData();
@@ -668,12 +675,12 @@ function QuestionCard({
   };
 
   const updateUserBalance = async () => {
-    const data = await getGameTokenBalance({ accountAddress: accountAddress });
+    const data = await getGameTokenBalance({ accountAddress: accountAddress, rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc), gameTokenAddress: currentNetwork.gameToken.address, gameTokenDecimal: currentNetwork.gameToken.decimals});
     setUserBalance(data);
   };
 
   useEffect(() => {
-    const updateTimeStampInterval = setInterval(() => {
+    const updateTimeStampInterval:any = setInterval(() => {
       setTimeStamp(Math.round(Date.now() / 1000));
     }, 60000);
     return () => clearInterval(updateTimeStampInterval);

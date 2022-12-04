@@ -13,56 +13,26 @@ import WI from "../assets/images/nft/WI.jpeg";
 import AFG from "../assets/images/nft/AFG.jpeg";
 import NZ_RUNNER_UP from "../assets/images/nft/NZ_RUNNER_UP.png";
 import AUS_WINNER from "../assets/images/nft/AUS_WINNER.png";
-const mainnetGameToken = {
-  address: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
-  name: "USDC Token",
-  symbol: "USDC",
-  decimals: "6",
-};
-
-const testnetGameToken = {
-  address: "0x2eEe3947c2747Aa6206B64064eb3AB1ddf0BC35b",
-  name: "DFYN Test Token",
-  symbol: "DFYN",
-  decimals: "18",
-};
-
-export const networkTestnet = {
-  networkId: "4",
-  rpc: "https://rinkeby.infura.io/v3/16c3adc0500c486e8431ebfb82334fdf",
-  explorer: "https://rinkeby.etherscan.io/tx/",
-};
-// export const networkTestnet = {
-//   networkId: "80001",
-//   rpc: "https://matic-mumbai.chainstacklabs.com",
-//   explorer: "https://mumbai.polygonscan.com/tx/",
-// };
-
-const networkMainnet = {
-  networkId: "137",
-  rpc: "https://polygon-rpc.com",
-  explorer: "https://polygonscan.com/tx/",
-};
 
 export const teamLogos: KeyValueType = {
-  IND: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/IND.png",
-  AFG: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/AFG.png",
-  AUS: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/AUS.png",
+  IND: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/IND.png",
+  AFG: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/AFG.png",
+  AUS: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/AUS.png",
   BDESH:
-    "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/BDESH.png",
-  BAN: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/BDESH.png",
-  ENG: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/ENG.png",
-  IRE: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/IRE.png",
-  NAM: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/NAM.png",
-  NL: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/NL.png",
-  NZ: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/NZ.png",
-  OMN: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/OMN.png",
-  PAK: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/PAK.png",
-  PNG: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/PNG.png",
-  SA: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/SA.png",
-  SCO: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/SCO.png",
-  SL: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/SL.png",
-  WI: "https://raw.githubusercontent.com/dfyn/prediction-market-data/main/team-images/WI.png",
+    "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/BDESH.png",
+  BAN: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/BDESH.png",
+  ENG: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/ENG.png",
+  IRE: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/IRE.png",
+  NAM: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/NAM.png",
+  NL: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/NL.png",
+  NZ: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/NZ.png",
+  OMN: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/OMN.png",
+  PAK: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/PAK.png",
+  PNG: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/PNG.png",
+  SA: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/SA.png",
+  SCO: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/SCO.png",
+  SL: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/SL.png",
+  WI: "https://raw.githubusercontent.com/astro/prediction-market-data/main/team-images/WI.png",
   NYKAA:
     "https://raw.githubusercontent.com/yoda-xyz/match-data/main/team-images/NYKAA.png",
 };
@@ -102,6 +72,104 @@ const maticTestnetUSDC = {
 export const MINIMUM_BET_AMOUT = 0.1;
 export const REWARD_RATE = 97;
 export const TOTAL_RATE = 100;
+
+const mainnetGameToken = {
+  address: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+  name: "USDC Token",
+  symbol: "USDC",
+  decimals: "6",
+};
+
+const testnetGameToken = {
+  address: "0x2eEe3947c2747Aa6206B64064eb3AB1ddf0BC35b",
+  name: "DFYN Test Token",
+  symbol: "DFYN",
+  decimals: "18",
+};
+
+export const networkTestnet = {
+  networkId: "4",
+  rpc: "https://rinkeby.infura.io/v3/16c3adc0500c486e8431ebfb82334fdf",
+  explorer: "https://rinkeby.etherscan.io/tx/",
+};
+// export const networkTestnet = {
+//   networkId: "80001",
+//   rpc: "https://matic-mumbai.chainstacklabs.com",
+//   explorer: "https://mumbai.polygonscan.com/tx/",
+// };
+
+const networkMainnet = {
+  name: "M",
+  networkId: "137",
+  rpc: "https://liberty10.shardeum.org/",
+  explorer: "https://explorer-liberty10.shardeum.org/tx/",
+  id: 0,
+  gameToken: {
+    address: "0x2eEe3947c2747Aa6206B64064eb3AB1ddf0BC35b",
+    name: "DFYN Test Token",
+    symbol: "DFYN",
+    decimals: "18",
+  },
+};
+
+export const NETWORK_LIST_TESTNET = [
+  {
+    name: "Mumbai Testnet",
+    id: 0,
+    networkId: "80001",
+    rpc: "https://polygon-mumbai.g.alchemy.com/v2/KTThKitCO6ribBk4VbChTxiCKZLNjVPy",
+    explorer: "https://mumbai.polygonscan.com/tx/",
+    logo: "https://cryptologos.cc/logos/polygon-matic-logo.png?v=023",
+    baseUrl:
+      "https://raw.githubusercontent.com/Chota-Bheem-Codes/astro-game-data/mumbai",
+    graphEndpoint:
+      "https://api.thegraph.com/subgraphs/name/shivam78288/astro-subgraph",
+    gameToken: {
+      address: "0xfF2e69aAd5b6a4903347aADcd70E632AF0015B8F",
+      name: "Astro Test Token",
+      symbol: "ASTRO",
+      decimals: "18",
+    },
+  },
+  {
+    name: "Cronos Testnet",
+    id: 1,
+    networkId: "338",
+    rpc: "https://evm-t3.cronos.org",
+    explorer: "https://testnet.cronoscan.com/tx/",
+    logo: "https://cryptologos.cc/logos/cronos-cro-logo.png?v=023",
+    baseUrl:
+      "https://raw.githubusercontent.com/Chota-Bheem-Codes/astro-game-data/main",
+    graphEndpoint:
+      "https://graph.cronoslabs.com/subgraphs/name/astro-prediction-markets/astro",
+    gameToken: {
+      address: "0xfF2e69aAd5b6a4903347aADcd70E632AF0015B8F",
+      name: "Astro Test Token",
+      symbol: "ASTRO",
+      decimals: "18",
+    },
+  },
+  {
+    name: "Shardeum Liberty Testnet",
+    networkId: "137",
+    id: 2,
+    rpc: "https://liberty10.shardeum.org/",
+    explorer: "https://explorer-liberty10.shardeum.org/tx/",
+    logo: "https://img.api.cryptorank.io/coins/150x150.shardeum1665056595732.png",
+    baseUrl:
+      "https://raw.githubusercontent.com/Chota-Bheem-Codes/astro-game-data/shardeum",
+    graphEndpoint:
+      "https://graph.cronoslabs.com/subgraphs/name/astro-prediction-markets/astro",
+    gameToken: {
+      address: "0xfF2e69aAd5b6a4903347aADcd70E632AF0015B8F",
+      name: "Astro Test Token",
+      symbol: "ASTRO",
+      decimals: "18",
+    },
+  },
+];
+
+export const networkList = NETWORK_LIST_TESTNET;
 
 export const network = networkMainnet;
 // export const network = networkTestnet;

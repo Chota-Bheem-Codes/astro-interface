@@ -25,6 +25,7 @@ import {
 import useWeb3Modal from "../../hooks/useWeb3Modal";
 import { REWARD_RATE, TOTAL_RATE } from "../../config/Constants";
 import Buttons from "../../components/Buttons";
+import { useNetworkManager } from "../../state/network/hooks";
 const NetEarning = styled(Box)`
   background: #00a57630;
   border: 1px solid #00a576;
@@ -240,9 +241,10 @@ const MyBets = () => {
   const [questionAddresses] = useQuestionAddresses();
   const [, setUserBetsMapping] = useUserBetsMapping();
   const [currentTab, setCurrentTab] = useState(0);
+  const [currentNetwork] = useNetworkManager()
   const fetchData = async () => {
     if (!currentAccountAddress) return;
-    const response = await getMyBetDataGraph(currentAccountAddress);
+    const response = await getMyBetDataGraph(currentNetwork.graphEndpoint,currentAccountAddress);
     setMyBetsData(
       response && currentQuestionMapping
         ? sortMyPositions(response, currentQuestionMapping)
@@ -456,7 +458,7 @@ const MyBets = () => {
                 </Banner2Header>
 
                 <BannerButton
-                  onClick={() => history.push("/prediction-markets/general")}
+                  onClick={() => history.push("/prediction-markets/football")}
                 >
                   Predict Now
                 </BannerButton>
@@ -478,7 +480,7 @@ const MyBets = () => {
                     {currentTab === 0 ? (
                       <BannerButton
                         onClick={() =>
-                          history.push("/prediction-markets/general")
+                          history.push("/prediction-markets/football")
                         }
                       >
                         Predict Now

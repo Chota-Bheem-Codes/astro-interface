@@ -197,13 +197,7 @@ const StyledTextField = styled(TextField)({
   },
 });
 
-const VisitDfyn = styled.div`
-  font-size: 14px;
-  text-align: center;
 
-  margin: 10px 20px;
-  margin-bottom: 17px;
-`;
 const StyledCloseButton = styled(CancelIcon)`
   &&& {
     color: #7b7d85;
@@ -346,7 +340,7 @@ function InputBox({ input, question, setInput, action, option, close }: Props) {
           Your Prediction: <Span> &nbsp; {option} </Span>
         </StyledText2>
         <StyledText3 color="#C4C4C4">
-          Available to bid: {getFlooredFixed(userBalance, 4)} USDC
+          Available to bid: {getFlooredFixed(userBalance, 4)} Astro Test Token
         </StyledText3>
         <Box>
           <StyledInputField
@@ -360,18 +354,6 @@ function InputBox({ input, question, setInput, action, option, close }: Props) {
       <StyledButton fullWidth variant="contained" onClick={action}>
         Place Bid
       </StyledButton>
-      <VisitDfyn>
-        Need USDC? Visit{" "}
-        <a
-          href="https://exchange.dfyn.network/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontWeight: "bold", color: "#4390F8" }}
-        >
-          Dfyn
-        </a>{" "}
-        and swap to USDC!
-      </VisitDfyn>
     </Wrapper>
   );
 }

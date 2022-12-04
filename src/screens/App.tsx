@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import Background from "../components/Background";
 import Notefication from "../components/Notefication";
-
+import { QRCode } from "react-qr-svg";
 import Header from "../components/Header";
 import styled from "styled-components";
 import Footer from "../components/Footer";
@@ -47,15 +47,17 @@ import {
   sortMatchData,
   sortMyPositions,
 } from "../utils";
-import Nft from "./Nft";
-import MyNft from "./MyNft";
 import { UserBet } from "../state/questions/slice";
-import { getGameTokenBalance } from "../config/ContractFunctions";
+import { getGameTokenBalance, getNftBalance } from "../config/ContractFunctions";
 import { useMediaQuery } from "@mui/material";
-import GoogleAnalyticsReporter from "../components/GoogleAnalyticsReporter";
 import IPO from "./IPO";
 import Football from "./Football";
 import HomePage from "../components/HomePage";
+import { useNetworkManager } from "../state/network/hooks";
+import { ethers } from "ethers";
+import proofRequest from "../config/proofRequest";
+import MenuWrapper from "../components/Menu/MenuWrapper";
+import { ButtonConfirm } from "../components/Button";
 
 declare global {
   interface Window {
@@ -65,6 +67,18 @@ declare global {
     biconomyWeb3USDC: any;
   }
 }
+
+const QRWrapper = styled.div`
+  display: grid;
+  place-items: center;
+`;
+
+const QRHeadline = styled.div`
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 15px;
+`;
 
 const Wrapper = styled.div`
   position: relative;
@@ -77,6 +91,34 @@ const MarginLayout = styled.div`
     padding-bottom: 100px;
   `};
 `;
+
+export const DEPLOYED_CONTRACT_ADDRESS = "0x772DD2DB8dC91c282D51776706993Eb796F50943";
+
+/**
+ *
+ */
+let qrProofRequestJson: any = { ...proofRequest };
+qrProofRequestJson.body.transaction_data.contract_address =
+  DEPLOYED_CONTRACT_ADDRESS;
+qrProofRequestJson.body.scope[0].rules.query.req = {
+  // NOTE: this value needs to match the Attribute name in https://platform-test.polygonid.com
+  customNumberAttribute: {
+    // NOTE: this value needs to match the erc20ZkpRequest.ts L34 or erc721ZkpRequest.ts L34
+    // - $tl = operator 2 erc20ZkpRequest.ts L38
+    // - 20020101 = value erc20ZkpRequest.ts L41
+    $eq: 17,
+  },
+};
+// NOTE1: if you change this you need to resubmit the erc10|erc721ZKPRequest
+// NOTE2: type is case-sensitive
+// You can generate new schemas via https://platform-test.polygonid.com
+qrProofRequestJson.body.scope[0].rules.query.schema = {
+  url: "https://platform-test.polygonid.com/claim-link/bbeb834b-c5df-4cde-8e18-e441041a2567",
+  type: "MyCustomSchema",
+};
+
+// Main Component
+// ========================================================
 
 function App() {
   const [showMetaNotification, setShowMetaNotification] = useState(true);
@@ -95,32 +137,39 @@ function App() {
   const [isWalletConnected] = useWalletConnected();
   const isMobile = useMediaQuery("(max-width:600px)");
   const [isMetaMask, setIsMetaMask] = useState(false);
+  const [currentNetwork] = useNetworkManager();
+  const [isOver18, setIsOver18] = useState(false);
 
   const fetchInitialData = async () => {
     const data = await Promise.all([
-      getQuestionData("cricket"),
-      getTheContractAddresses(),
-      getQuestionMappingData(),
-      getQuestionDataGraph(),
-      getQuestionData("general"),
-      getQuestionData("crypto"),
-      getTeamLogos(),
-      getQuestionData("football"),
+      //getQuestionData("cricket"),
+      getTheContractAddresses(currentNetwork.baseUrl),
+      getQuestionMappingData(currentNetwork.baseUrl),
+      getQuestionDataGraph(currentNetwork.graphEndpoint),
+      //getQuestionData("general"),
+      getQuestionData("crypto", currentNetwork.baseUrl),
+      getTeamLogos(currentNetwork.baseUrl),
+      getQuestionData("football", currentNetwork.baseUrl),
     ]);
-    setMatchData(data[0] && sortMatchData(data[0]));
-    setQuestionAddresses(data[1]);
-    setQuestionMappping(data[2]);
-    setQuestionBetDataMapping(groupByIdQuestion(data[3]));
-    setGeneralData(data[4] && sortMatchData(data[4]));
-    setCryptoData(data[5] && sortMatchData(data[5]));
-    setTeamLogos(data[6]);
-    setFootballData(data[7] && sortMatchData(data[7]));
+    //setMatchData(data[0] && sortMatchData(data[0]));
+    setQuestionAddresses(data[0]);
+    setQuestionMappping(data[1]);
+    setQuestionBetDataMapping(groupByIdQuestion(data[2]));
+    //setGeneralData(data[3] && sortMatchData(data[3]));
+    setCryptoData(data[3] && sortMatchData(data[3]));
+    setTeamLogos(data[4]);
+    setFootballData(data[5] && sortMatchData(data[5]));
   };
 
   const fetchUserSpecificData = async () => {
     const res = await Promise.all([
-      getMyBetDataGraph(accountAddress ?? ""),
-      getGameTokenBalance({ accountAddress: accountAddress }),
+      getMyBetDataGraph(currentNetwork.graphEndpoint, accountAddress ?? ""),
+      getGameTokenBalance({
+        accountAddress: accountAddress,
+        rpcProvider: new ethers.providers.JsonRpcProvider(currentNetwork.rpc),
+        gameTokenAddress: currentNetwork.gameToken.address,
+        gameTokenDecimal: currentNetwork.gameToken.decimals,
+      }),
     ]);
     setMyBetsData(
       questionMapping && res[0] && sortMyPositions(res[0], questionMapping)
@@ -158,11 +207,43 @@ function App() {
     fetchUserSpecificData();
   }, [accountAddress, questionMapping, isWalletConnected]);
 
+  // useEffect(() => {
+  //   if (!accountAddress) return;
+  //   const fetchNFTBalance = async() => {
+  //     console.log("FETCH NFT BALANCE ->")
+  //     const balance = await getNftBalance({ accountAddress });
+  //     console.log("nft balance ->", balance)
+  //     if (parseInt(balance) > 0) {
+  //       setIsOver18(true)
+  //     }
+  //   }
+  //   fetchNFTBalance()
+  //   const fetchInterval = setInterval(() => fetchNFTBalance(), 15000)
+  //   return () => clearInterval(fetchInterval)
+  // }, [accountAddress]);
+
   return (
     <Router>
-      <Route component={GoogleAnalyticsReporter} />
+      <Route />
       <Wrapper>
         <Header />
+        {/* {
+          !isOver18 &&
+          <>
+            <MenuWrapper open={true}>
+              <QRWrapper>
+                <QRHeadline>
+                  Are you over 18? Scan to verify with polygon ID
+                </QRHeadline>
+                <QRCode
+                  level="Q"
+                  style={{ width: 256 }}
+                  value={JSON.stringify(qrProofRequestJson)}
+                />
+              </QRWrapper>
+            </MenuWrapper>
+          </>
+        } */}
         {showMetaNotification ? (
           isMobile ? (
             !isMetaMask ? (
@@ -189,7 +270,7 @@ function App() {
               exact
               strict
               path="/prediction-markets"
-              render={() => <Redirect to="/prediction-markets/cricket" />}
+              render={() => <Redirect to="/prediction-markets/football" />}
             />
             <Route
               strict
@@ -237,11 +318,9 @@ function App() {
               path="/prediction-markets/my-positions"
               component={MyBets}
             />
-            <Route exact strict path="/nft" component={Nft} />
-            <Route exact strict path="/nft/mynfts" component={MyNft} />
             <Route
               path="*"
-              render={() => <Redirect to="/prediction-markets/general" />}
+              render={() => <Redirect to="/prediction-markets/football" />}
             />
           </Switch>
         </MarginLayout>

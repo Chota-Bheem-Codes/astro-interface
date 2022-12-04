@@ -7,8 +7,6 @@ import styled from "styled-components";
 import Button from "@mui/material/Button";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { useChainId, useWalletModal } from "../../state/wallet/hooks";
-import { network } from "../../config/Constants";
-import { switchNetworkInMetamask } from "../../utils/metamaskFunctions";
 
 const WalletButton = styled(Button)<{ connected: boolean }>`
   &&& {
@@ -74,15 +72,7 @@ const Wallet = () => {
           Connect Wallet
         </WalletButton>
       )}
-      {currentAccountAddress && network.networkId !== chainId && (
-        <WalletButton
-          onClick={async () => await switchNetworkInMetamask(0)}
-          connected={!!currentAccountAddress}
-        >
-          Switch To Polygon
-        </WalletButton>
-      )}
-      {currentAccountAddress && network.networkId === chainId && (
+      {currentAccountAddress &&(
         <WalletButton
           onClick={() => setShowChangeWalletModal(true)}
           connected={!!currentAccountAddress}
