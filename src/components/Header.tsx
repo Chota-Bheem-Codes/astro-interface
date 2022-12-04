@@ -275,7 +275,7 @@ function Header() {
                 </StyledButton3>
                 <StyledButton3
                   onClick={() => setOpenMenu(false)}
-                  to="/prediction-markets/cricket"
+                  to="/prediction-markets/football"
                   active={currentRoute.pathname.includes("/prediction-markets")}
                 >
                   Prediction Markets
@@ -295,7 +295,7 @@ function Header() {
             <HeadLogo />
             <StyledStack2 direction="row" spacing={2}>
               <StyledButton2
-                to="/prediction-markets/cricket"
+                to="/prediction-markets/football"
                 active={currentRoute.pathname.includes("/prediction-markets")}
               >
                 Prediction Markets

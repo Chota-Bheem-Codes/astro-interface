@@ -32,6 +32,7 @@ import {
 import { getFlooredFixed } from "../../utils";
 import toast, { Toaster } from "react-hot-toast";
 import Moment from "react-moment";
+import { useNetworkManager } from "../../state/network/hooks";
 
 interface PredictionCardProps {
   category: string;
@@ -377,6 +378,7 @@ const PredictionCard: React.FC<
   const [teamLogos] = useTeamLogos();
   const [gasLessToggle] = useGasLessToggle();
   const [error, setError] = useState<undefined | string>(undefined);
+  const [currentNetwork] = useNetworkManager()
 
   useEffect(() => {
     if (getEpoch(bid_end_time) - timestamp > 0) {
@@ -433,7 +435,7 @@ const PredictionCard: React.FC<
       setShowWalletModal(true);
       return;
     }
-    if (network.networkId !== chainId) {
+    if (currentNetwork.networkId !== chainId) {
       await switchNetworkInMetamask(0);
       return;
     }

@@ -1,5 +1,6 @@
 {
-  "name": "prediction-markets-ui",
+  "homepage": "https://chota-bheem-codes.github.io/astro-interface",
+  "name": "astro-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -62,7 +63,9 @@
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false  react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

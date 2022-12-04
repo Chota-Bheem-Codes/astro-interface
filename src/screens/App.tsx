@@ -211,7 +211,7 @@ function App() {
   //   if (!accountAddress) return;
   //   const fetchNFTBalance = async() => {
   //     console.log("FETCH NFT BALANCE ->")
-  //     const balance = await getNftBalance({ accountAddress:"0x2B351b7bbC86ab5DF433539fE907f8EE4DE1B964" });
+  //     const balance = await getNftBalance({ accountAddress });
   //     console.log("nft balance ->", balance)
   //     if (parseInt(balance) > 0) {
   //       setIsOver18(true)
